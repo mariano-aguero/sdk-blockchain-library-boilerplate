@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "references": [{ "path": "../../packages/library" }],
+  "exclude": ["node_modules", "dist", "*.d.ts"]
+}

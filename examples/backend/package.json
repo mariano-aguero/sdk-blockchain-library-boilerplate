@@ -1,0 +1,13 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build",
+    "start": "yarn build && node dist/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
