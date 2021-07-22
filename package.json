@@ -16,13 +16,13 @@
   "scripts": {
     "dapp": "yarn workspace dapp",
     "backend": "yarn workspace backend",
-    "sdk-library-boilerplate": "yarn workspace sdk-library-boilerplate",
+    "library": "yarn workspace library",
     "prepare": "husky install",
     "lint": "yarn eslint './**/*.{js,ts,tsx}' --fix",
     "prettier": "prettier '.' --write",
     "prepublishOnly": "yarn lint && yarn prettier && yarn build",
-    "publish": "yarn login && yarn sdk-library-boilerplate publish",
-    "test": "yarn sdk-library-boilerplate test"
+    "publish": "yarn login && yarn library publish",
+    "test": "yarn library test"
   },
   "devDependencies": {
     "@types/node": "^16.3.2",

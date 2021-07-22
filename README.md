@@ -14,6 +14,18 @@
 yarn
 ```
 
+```sh
+# build package
+yarn library build
+```
+
+## Start Example Dapp
+After the setup run the example locally using
+
+```sh
+yarn dapp start
+```
+
 ## Contributing
 
 If you have suggestions for how SDK library boilerplate could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
