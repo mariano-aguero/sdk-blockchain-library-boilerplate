@@ -17,9 +17,24 @@ yarn
 ```sh
 # build package
 yarn library build
+
+# publish the library
+yarn publish
 ```
 
-## Start Example Dapp
+## Start Example dApp
+
+### Statuses
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a4c02d6e-a909-48b5-84d7-c9caf926051c/deploy-status)](https://app.netlify.com/sites/focused-mahavira-0c6915/deploys)
+
+### Getting started :octocat:
+
+#### Prequalities
+```
+Node >= 12.9
+yarn >= 1.22
+```
+
 After the setup run the example locally using
 
 ```sh
@@ -35,3 +50,6 @@ For more, check out the [Contributing Guide](CONTRIBUTING.md).
 ## License
 
 [MIT](LICENSE) © 2021 - Mariano Aguero
+
+
+## And that's all :fire:
