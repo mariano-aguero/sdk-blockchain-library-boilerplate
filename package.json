@@ -17,7 +17,7 @@
   "scripts": {
     "dapp": "yarn workspace dapp",
     "backend": "yarn workspace backend",
-    "library": "yarn workspace library",
+    "library": "yarn workspace sdk-library-boilerplate",
     "prepare": "husky install",
     "lint": "yarn eslint './**/*.{js,ts,tsx}' --fix",
     "prettier": "prettier '.' --write",
