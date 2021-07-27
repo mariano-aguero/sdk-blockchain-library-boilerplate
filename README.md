@@ -25,8 +25,8 @@ yarn publish
 
 ## Start Example dApp
 
-### Statuses
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a4c02d6e-a909-48b5-84d7-c9caf926051c/deploy-status)](https://app.netlify.com/sites/focused-mahavira-0c6915/deploys)
+### Demo
+[Live Preview](https://focused-mahavira-0c6915.netlify.app)
 
 ### Getting started :octocat:
 
