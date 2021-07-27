@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from './logo.svg'
 import './App.css'
-import { createUser, showUser, User } from 'library'
+import { createUser, showUser, User } from 'sdk-library-boilerplate'
 
 const App = () => {
   const user: User = createUser('Alice', 30)

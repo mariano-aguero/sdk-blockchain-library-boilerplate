@@ -19,6 +19,7 @@ yarn
 yarn library build
 
 # publish the library
+cd packages/library
 yarn publish
 ```
 

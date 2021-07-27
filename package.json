@@ -21,8 +21,6 @@
     "prepare": "husky install",
     "lint": "yarn eslint './**/*.{js,ts,tsx}' --fix",
     "prettier": "prettier '.' --write",
-    "prepublishOnly": "yarn lint && yarn prettier && yarn build",
-    "publish": "yarn login && yarn library publish",
     "test": "yarn library test",
     "start:dapp": "yarn dapp start",
     "build:dapp": "yarn dapp build"
