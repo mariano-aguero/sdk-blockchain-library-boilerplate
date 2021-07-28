@@ -1,6 +1,6 @@
 # SDK library boilerplate
 
-> A typescript boilerplate that can be used to create a library 
+> A typescript boilerplate that can be used to create a library
 
 [![Unit Tests](https://github.com/mariano-aguero/sdk-library-boilerplate/workflows/Unit%20Tests/badge.svg)](https://github.com/mariano-aguero/sdk-library-boilerplate/actions?query=workflow%3A%22Unit+Tests%22)
 [![Lint](https://github.com/mariano-aguero/sdk-library-boilerplate/workflows/Lint/badge.svg)](https://github.com/mariano-aguero/sdk-library-boilerplate/actions?query=workflow%3ALint)
@@ -26,11 +26,13 @@ yarn publish
 ## Start Example dApp
 
 ### Demo
+
 [Live Preview](https://focused-mahavira-0c6915.netlify.app)
 
 ### Getting started :octocat:
 
 #### Prequalities
+
 ```
 Node >= 12.9
 yarn >= 1.22
@@ -51,6 +53,5 @@ For more, check out the [Contributing Guide](CONTRIBUTING.md).
 ## License
 
 [MIT](LICENSE) © 2021 - Mariano Aguero
-
 
 ## And that's all :fire:
