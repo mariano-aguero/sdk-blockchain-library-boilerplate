@@ -6,6 +6,9 @@ import { Web3ContextProvider } from '../contexts/web3Context'
 import { Greeter } from '../components/greeter'
 
 export const Home = () => {
+
+
+  
   return (
     <ToastProvider>
       <Web3ContextProvider>
