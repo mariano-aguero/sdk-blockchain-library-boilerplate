@@ -3,7 +3,7 @@ import { useToasts } from 'react-toast-notifications'
 
 import { useWeb3Context, Web3ContextStatus } from '../contexts/web3Context'
 import { truncateStringInTheMiddle } from '../utils/tool'
-import {NETWORKS} from "../config/constants"
+import { NETWORKS } from '../config/constants'
 
 export const Connect = () => {
   const { status, address, disconnect, connect, provider } = useWeb3Context()
@@ -13,7 +13,7 @@ export const Connect = () => {
 
   React.useEffect(() => {
     const getNetworkName = async () => {
-      if(provider && status !== Web3ContextStatus.WrongNetwork) {
+      if (provider && status !== Web3ContextStatus.WrongNetwork) {
         const chainId = (await provider.getNetwork()).chainId
         setNetworkName(NETWORKS[+chainId] ?? '')
       } else {
@@ -22,7 +22,7 @@ export const Connect = () => {
     }
 
     getNetworkName()
-  } , [provider, status] )
+  }, [provider, status])
 
   const handleDisconnect = () => {
     disconnect()

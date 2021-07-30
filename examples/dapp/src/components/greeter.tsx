@@ -1,7 +1,7 @@
 import React from 'react'
 import SDK from 'sdk-library-boilerplate'
 import { useWeb3Context } from '../contexts/web3Context'
-import {ethers} from "ethers";
+import { ethers } from 'ethers'
 
 export const Greeter = () => {
   const { provider } = useWeb3Context()
@@ -13,7 +13,8 @@ export const Greeter = () => {
   React.useEffect(() => {
     const fetchGreeter = async () => {
       if (provider) {
-        const signer = provider instanceof ethers.providers.Web3Provider ? await provider.getSigner(): undefined
+        const signer =
+          provider instanceof ethers.providers.Web3Provider ? await provider.getSigner() : undefined
         const sdk = await SDK.create(provider, signer)
         const greeter = await sdk.instance.modules.greeter.getGreeting()
         setGreeter(greeter)
@@ -31,7 +32,8 @@ export const Greeter = () => {
     setIsExecuted(true)
 
     if (provider && newGreeter) {
-      const signer = provider instanceof ethers.providers.Web3Provider ? await provider.getSigner(): undefined
+      const signer =
+        provider instanceof ethers.providers.Web3Provider ? await provider.getSigner() : undefined
       const sdk = await SDK.create(provider, signer)
       await sdk.instance.modules.greeter.setGreeting(newGreeter)
       setGreeter(newGreeter)
@@ -47,8 +49,17 @@ export const Greeter = () => {
       </header>
       <form onSubmit={handleSubmit}>
         <p className="grouped">
-          <input type="text" disabled={isExecuted} name="greeter" id="greeter" onChange={handleInputChange}  placeholder="Greeter" />
-          <button disabled={isExecuted} className="button primary" type="submit" value="submit" >Submit</button>
+          <input
+            type="text"
+            disabled={isExecuted}
+            name="greeter"
+            id="greeter"
+            onChange={handleInputChange}
+            placeholder="Greeter"
+          />
+          <button disabled={isExecuted} className="button primary" type="submit" value="submit">
+            Submit
+          </button>
         </p>
       </form>
     </section>
