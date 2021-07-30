@@ -27,7 +27,9 @@ export const WEB3_CONTEXT_DEFAULT_VALUE = {
   provider: null,
   address: null,
   connect: async () => Web3ContextStatus.NotAsked,
-  disconnect: async () => {}
+  disconnect: async () => {
+    return
+  }
 }
 
 const Web3Context = React.createContext<IWeb3Context>(WEB3_CONTEXT_DEFAULT_VALUE)

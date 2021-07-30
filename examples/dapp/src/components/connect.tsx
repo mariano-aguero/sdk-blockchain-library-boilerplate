@@ -3,10 +3,26 @@ import { useToasts } from 'react-toast-notifications'
 
 import { useWeb3Context, Web3ContextStatus } from '../contexts/web3Context'
 import { truncateStringInTheMiddle } from '../utils/tool'
+import {NETWORKS} from "../config/constants"
 
 export const Connect = () => {
-  const { address, disconnect, connect } = useWeb3Context()
+  const { status, address, disconnect, connect, provider } = useWeb3Context()
   const { addToast } = useToasts()
+
+  const [networkName, setNetworkName] = React.useState<string>('')
+
+  React.useEffect(() => {
+    const getNetworkName = async () => {
+      if(provider && status !== Web3ContextStatus.WrongNetwork) {
+        const chainId = (await provider.getNetwork()).chainId
+        setNetworkName(NETWORKS[+chainId] ?? '')
+      } else {
+        setNetworkName('')
+      }
+    }
+
+    getNetworkName()
+  } , [provider, status] )
 
   const handleDisconnect = () => {
     disconnect()
@@ -30,6 +46,11 @@ export const Connect = () => {
           <div className="is-vertical-align" title={address}>
             {truncateStringInTheMiddle(address, 6, 4)}&nbsp;|
           </div>
+          {networkName && (
+            <div className="is-vertical-align" title={networkName}>
+              {networkName}&nbsp;|
+            </div>
+          )}
           <div className="button primary icon" style={{ zIndex: 0 }} onClick={handleDisconnect}>
             Disconnect&nbsp;
             <img
