@@ -1,7 +1,7 @@
 # Small Library Example
 
-The latest version of the SDK is used in production in the ... Interface,
-but it is considered Alpha software and may contain bugs or change significantly between patch versions.
+A JavaScript SDK for Ethereum. Wraps around Ethers.js. Works in the web browser and Node.js.
+
 Pull requests welcome!
 
 # SDK

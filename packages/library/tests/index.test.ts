@@ -1,33 +1,19 @@
-import { expect } from 'chai'
-import * as sinon from 'sinon'
+import { ethers } from 'ethers'
 
-import { createUser, User, showUser } from '../src/index'
+import SDK from '../src/index'
 
-describe('test user', () => {
-  it('create user', () => {
-    // Give
-    const name = 'Alice'
-    const age = 20
-
-    // When
-    const user: User = createUser(name, age)
-
-    // Then
-    expect(user.name).equal(name)
-    expect(user.age).equal(age)
-  })
-
-  it('display user', () => {
-    // Give
-    const name = 'Alice'
-    const age = 20
+describe('test greeter', () => {
+  it('display greeter with infura', async() => {
+    // Given
+    const provider = new ethers.providers.InfuraProvider(4, process.env.INFURA_API_KEY)
+    const sdk = await SDK.create(provider)
 
     // When
-    const spy = sinon.spy(console, 'log')
-    const user: User = createUser(name, age)
-    showUser(user)
+    const greet = await sdk.instance.modules.greeter.getGreeting()
 
     // Then
-    expect(spy.calledWith(`Alice is 20 years old.`)).equal(true)
+    expect(greet).toBe('Hello, world!')
+
   })
+
 })
