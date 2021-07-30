@@ -195,6 +195,4 @@ $RECYCLE.BIN/
 
 dist
 
-.idea
-# Local Netlify folder
-.netlify
+build
