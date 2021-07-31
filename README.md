@@ -11,16 +11,18 @@
 
 ```sh
 # Install dependencies
+cd packages/library
 yarn
 ```
 
 ```sh
 # build package
-yarn library build
+cd packages/library
+yarn build
 
 # publish the library
 cd packages/library
-yarn publish
+npm publish
 ```
 
 ## Start Example dApp
