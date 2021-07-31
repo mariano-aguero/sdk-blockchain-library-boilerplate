@@ -11446,10 +11446,10 @@ scrypt-js@3.0.1, scrypt-js@^3.0.0:
   resolved "https://registry.yarnpkg.com/scrypt-js/-/scrypt-js-3.0.1.tgz#d314a57c2aef69d1ad98a138a21fe9eafa9ee312"
   integrity sha512-cdwTTnqPu0Hyvf5in5asVdZocVDTNRmR7XEcJuIzMjJeSHybHl7vpB66AzwTaIg6CLSbtjcxc8fqcySfnTkccA==
 
-sdk-library-boilerplate@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/sdk-library-boilerplate/-/sdk-library-boilerplate-0.1.9.tgz#90d5440f8d901f7556b69ed49ed79c4d1ce63f8f"
-  integrity sha512-G6uR/jGuxVphpi59zNHiZxzoCH8wbRT7F5VmSdreP6TtqT+DBXaHDRk2Dbl8YVCSJfsi051nLfF+Vs6QjOaggw==
+sdk-library-boilerplate@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/sdk-library-boilerplate/-/sdk-library-boilerplate-0.1.10.tgz#3ae2c1b6fde19b93924fb8700d44b3649d868579"
+  integrity sha512-GfzZ+4VlWTTqBLu2yTMAu0e2AcqeD2OkN9Ow1QtN21uRnJihHiCHAmcWs/dXD1vf8M1B8XnJS2+9YsCE1cgfIg==
   dependencies:
     dotenv "^10.0.0"
     ethers "^5.4.2"
