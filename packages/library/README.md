@@ -14,7 +14,7 @@ Pull requests welcome!
 
 ## ENV
 Create a .env file copying the .env.example with the correct values
-This example needs a infura key, and reads the example contracts from Rinkeby (networkId 4).
+This example needs a infura key, and reads the example contracts from Rinkeby (networkId 4), and a private key with balance in rinkeby.
 
 ## Tests
 After configuring the .env file run
