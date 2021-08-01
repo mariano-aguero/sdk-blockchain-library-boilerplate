@@ -1,6 +1,6 @@
 {
   "name": "sdk-library-boilerplate",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "license": "MIT",
   "engines": {
     "yarn": "^1.22.0",

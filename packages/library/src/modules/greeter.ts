@@ -12,6 +12,7 @@ const deploymentRinkeby = require('hardhat-deploy-example/deployments/rinkeby/Gr
 const deploymentImplementationRinkeby = require('hardhat-deploy-example/deployments/rinkeby/Greeter_Implementation')
 
 import { Contract, ethers, Signer } from 'ethers'
+import { Transaction } from '../types/transaction'
 
 class Greeter {
   provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider
@@ -70,9 +71,12 @@ class Greeter {
     return this.contract
   }
 
-  setGreeting = async (greeting: string): Promise<ethers.providers.TransactionReceipt> => {
+  setGreeting = async (greeting: string): Promise<Transaction> => {
     const transactionObject = await this.contract.setGreeting(greeting)
-    return this.provider.waitForTransaction(transactionObject.hash)
+    return {
+      hash: transactionObject.hash,
+      getReceipt: async () => this.provider.waitForTransaction(transactionObject.hash)
+    }
   }
 
   getGreeting = async (): Promise<string> => {
