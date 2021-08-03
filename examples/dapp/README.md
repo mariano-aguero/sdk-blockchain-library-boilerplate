@@ -2,6 +2,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Pre requisits
+
+### ENV
+Create a .env file copying the .env.example with the correct values
+This example needs a infura key, a networkId, for this example the networkid is 4 (Rinkeby) and the explorer url ending with a slash. To get ETH in rinkeby use https://faucet.rinkeby.io/
+
+### Link the library
+You need to go to the package/library folder and run
+`yarn build`
+to build the library, then get back to the dapp folder and run
+`yarn add ../../packages/library`
+To update the dependecy
+
+
 ## Available Scripts
 
 In the project directory, you can run:

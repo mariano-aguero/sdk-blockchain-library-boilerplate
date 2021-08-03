@@ -2,6 +2,8 @@ import { ethers, Signer } from 'ethers'
 
 import Greeter from '../modules/greeter'
 
+export { Transaction } from './transaction'
+
 export interface PackageModules {
   greeter: Greeter
 }
