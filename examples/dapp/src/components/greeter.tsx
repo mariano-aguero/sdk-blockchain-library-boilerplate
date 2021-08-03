@@ -3,7 +3,8 @@ import SDK from 'sdk-library-boilerplate'
 import { useWeb3Context } from '../contexts/web3Context'
 import { ethers } from 'ethers'
 import { useToasts } from 'react-toast-notifications'
-import { truncateStringInTheMiddle } from '../utils/tool'
+import { WaitingTransactionMessage } from './messages/waitingTransactionMessage'
+import { SuccessTransactionMessage } from './messages/successTransactionMessage'
 
 export const Greeter = () => {
   const { provider } = useWeb3Context()
@@ -38,44 +39,24 @@ export const Greeter = () => {
       const signer =
         provider instanceof ethers.providers.Web3Provider ? await provider.getSigner() : undefined
       const sdk = await SDK.create(provider, signer)
-      let transaction
       try {
-        transaction = await sdk.instance.modules.greeter.setGreeting(newGreeter)
-      } catch(err) {
-        console.error(err)
-        addToast(err.message, {
-          appearance: 'error',
+        const { getReceipt, hash } = await sdk.instance.modules.greeter.setGreeting(newGreeter)
+
+        addToast(<WaitingTransactionMessage hash={hash} />, {
+          appearance: 'info',
+          id: hash,
           autoDismiss: false
         })
-        setIsExecuted(false)
-        return
-      }
-      addToast(
-        <span>Waiting Transaction &nbsp;
-          <a href={`${process.env.REACT_APP_DEFAULT_NETWORK_EXPLORER}/tx/${transaction.hash}`} target="_blank" >
-            {truncateStringInTheMiddle(transaction.hash, 6, 4)}
-          </a>
-        </span>
-        , {
-        appearance: 'info',
-        id: transaction.hash,
-        autoDismiss: false
-      })
-      try {
-        await transaction.getReceipt()
-        updateToast(transaction.hash,  {
-          content:
-            <span>Transaction Successful &nbsp;
-              <a href={`${process.env.REACT_APP_DEFAULT_NETWORK_EXPLORER}/tx/${transaction.hash}`} target="_blank" >
-                {truncateStringInTheMiddle(transaction.hash, 6, 4)}
-              </a>
-            </span>,
+
+        await getReceipt()
+
+        updateToast(hash, {
+          content: <SuccessTransactionMessage hash={hash} />,
           appearance: 'success',
           autoDismiss: true
         })
         setGreeter(newGreeter)
-      } catch(err){
-        console.error(err)
+      } catch (err) {
         addToast(err.message, {
           appearance: 'error',
           autoDismiss: false
