@@ -25,4 +25,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Run tests
+        env:
+          INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }
         run: yarn test
