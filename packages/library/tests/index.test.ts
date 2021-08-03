@@ -1,4 +1,3 @@
-require('dotenv').config()
 import { ethers } from 'ethers'
 
 import SDK from '../src/index'
