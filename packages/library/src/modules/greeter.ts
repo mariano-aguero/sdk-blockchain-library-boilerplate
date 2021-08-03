@@ -15,12 +15,12 @@ import { Contract, ethers, Signer } from 'ethers'
 import { Transaction } from '../types/transaction'
 
 class Greeter {
-  provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider
+  provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider | ethers.providers.JsonRpcProvider
   signer: Signer | undefined
   contract: Contract
 
   constructor(
-    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider,
+    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider | ethers.providers.JsonRpcProvider,
     networkId = 4,
     signer?: Signer
   ) {
@@ -56,7 +56,7 @@ class Greeter {
   }
 
   static async create(
-    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider,
+    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider | ethers.providers.JsonRpcProvider,
     signer?: Signer
   ): Promise<Greeter> {
     const networkId = (await provider.getNetwork()).chainId
