@@ -13,7 +13,7 @@ You need to go to the package/library folder and run
 `yarn build`
 to build the library, then get back to the dapp folder and run
 `yarn add ../../packages/library`
-To update the dependecy
+To update the dependency
 
 
 ## Available Scripts
