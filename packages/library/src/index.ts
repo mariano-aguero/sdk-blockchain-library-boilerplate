@@ -10,7 +10,7 @@ class SDK {
   instance: SDKInstance
 
   constructor(
-    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider,
+    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider | ethers.providers.JsonRpcProvider,
     modules: PackageModules,
     signer?: Signer
   ) {
@@ -23,7 +23,7 @@ class SDK {
   }
 
   static async create(
-    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider,
+    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider | ethers.providers.JsonRpcProvider,
     signer?: Signer
   ): Promise<SDK> {
     const greeter = await Greeter.create(provider, signer)
