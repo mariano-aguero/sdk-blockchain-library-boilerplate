@@ -20,6 +20,7 @@ describe('test greeter', () => {
     expect(receipt.status).toBe(1)
 
   }, 30000)
+
   it('display greeter with infura', async() => {
     // Given
     const provider = new ethers.providers.InfuraProvider(4, process.env.INFURA_API_KEY)
