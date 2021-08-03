@@ -8,8 +8,13 @@ export interface PackageModules {
   greeter: Greeter
 }
 
+export type SDKProvider =
+  | ethers.providers.Web3Provider
+  | ethers.providers.InfuraProvider
+  | ethers.providers.JsonRpcProvider
+
 export interface SDKInstance {
-  _provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider
+  _provider: SDKProvider
   /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
   _ethers: any
   _signer: Signer | undefined

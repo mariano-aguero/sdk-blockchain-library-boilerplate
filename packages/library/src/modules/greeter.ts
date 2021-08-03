@@ -13,17 +13,14 @@ const deploymentImplementationRinkeby = require('hardhat-deploy-example/deployme
 
 import { Contract, ethers, Signer } from 'ethers'
 import { Transaction } from '../types/transaction'
+import { SDKProvider } from '../types'
 
 class Greeter {
-  provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider | ethers.providers.JsonRpcProvider
+  provider: SDKProvider
   signer: Signer | undefined
   contract: Contract
 
-  constructor(
-    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider | ethers.providers.JsonRpcProvider,
-    networkId = 4,
-    signer?: Signer
-  ) {
+  constructor(provider: SDKProvider, networkId = 4, signer?: Signer) {
     this.provider = provider
     this.signer = signer
 
@@ -55,10 +52,7 @@ class Greeter {
     }
   }
 
-  static async create(
-    provider: ethers.providers.Web3Provider | ethers.providers.InfuraProvider | ethers.providers.JsonRpcProvider,
-    signer?: Signer
-  ): Promise<Greeter> {
+  static async create(provider: SDKProvider, signer?: Signer): Promise<Greeter> {
     const networkId = (await provider.getNetwork()).chainId
     return new Greeter(provider, networkId, signer)
   }
