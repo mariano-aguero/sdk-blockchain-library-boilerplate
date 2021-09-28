@@ -84,24 +84,27 @@ export const Web3ContextProvider = (props: Props) => {
   }, [status])
 
   const disconnect = React.useCallback(async () => {
-    if (status !== Web3ContextStatus.Connected) {
-      return
-    }
-    await web3Modal.clearCachedProvider()
     setStatus(Web3ContextStatus.NotAsked)
-  }, [status])
+    setAddress(null)
+    setProvider(null)
+    await web3Modal.clearCachedProvider()
+  }, [])
 
   const subscribeEvents = React.useCallback(
     (provider) => {
-      provider.once('close', async () => {
+      if (!provider.on) {
+        return
+      }
+
+      provider.on('close', async () => {
         await disconnect()
       })
 
-      provider.once('disconnect', async () => {
+      provider.on('disconnect', async () => {
         await disconnect()
       })
 
-      provider.once('accountsChanged', async (accounts: string[]) => {
+      provider.on('accountsChanged', async (accounts: string[]) => {
         if (accounts.length > 0) {
           setAddress(accounts[0])
         } else {
@@ -110,9 +113,9 @@ export const Web3ContextProvider = (props: Props) => {
         }
       })
 
-      provider.once('chainChanged', async (networkId: number) => {
+      provider.on('chainChanged', async (networkId: number) => {
         if (!AVAILABLE_NETWORKS.includes(+networkId)) {
-          setStatus(Web3ContextStatus.WrongNetwork)
+          await disconnect()
         }
       })
     },
@@ -125,8 +128,8 @@ export const Web3ContextProvider = (props: Props) => {
         return Web3ContextStatus.Connected
       }
 
-      const provider = await web3Modal.connect()
-      const web3Provider = new ethers.providers.Web3Provider(provider)
+      const rawProvider = await web3Modal.connect()
+      const web3Provider = new ethers.providers.Web3Provider(rawProvider)
 
       const networkId = (await web3Provider.getNetwork()).chainId
 
@@ -140,7 +143,7 @@ export const Web3ContextProvider = (props: Props) => {
       setStatus(Web3ContextStatus.Connected)
       setProvider(web3Provider)
       setAddress(accounts[0])
-      subscribeEvents(provider)
+      subscribeEvents(rawProvider)
 
       return Web3ContextStatus.Connected
     } catch (err) {
