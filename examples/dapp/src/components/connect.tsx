@@ -24,20 +24,19 @@ export const Connect = () => {
     getNetworkName()
   }, [provider, status])
 
-  const handleDisconnect = () => {
-    disconnect()
-  }
+  const handleDisconnect = React.useCallback(async () => {
+    await disconnect()
+  }, [])
 
-  const handleConnect = async () => {
-    connect().then((status: Web3ContextStatus) => {
-      if (status === Web3ContextStatus.WrongNetwork) {
-        addToast(`You are trying to connect to an unsupported network.`, {
-          appearance: 'error',
-          autoDismiss: true
-        })
-      }
-    })
-  }
+  const handleConnect = React.useCallback(async () => {
+    const status: Web3ContextStatus = await connect()
+    if (status === Web3ContextStatus.WrongNetwork) {
+      addToast(`You are trying to connect to an unsupported network.`, {
+        appearance: 'error',
+        autoDismiss: true
+      })
+    }
+  }, [])
 
   return (
     <>
