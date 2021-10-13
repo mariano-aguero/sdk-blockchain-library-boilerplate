@@ -129,7 +129,15 @@ export const Web3ContextProvider = (props: Props) => {
       }
 
       const rawProvider = await web3Modal.connect()
-      const web3Provider = new ethers.providers.Web3Provider(rawProvider)
+      const web3Provider = new ethers.providers.Web3Provider(rawProvider, 'any')
+      web3Provider.on('network', (newNetwork, oldNetwork) => {
+        // When a Provider makes its initial connection, it emits a "network"
+        // event with a null oldNetwork along with the newNetwork. So, if the
+        // oldNetwork exists, it represents a changing network
+        if (oldNetwork) {
+          window.location.reload()
+        }
+      })
 
       const networkId = (await web3Provider.getNetwork()).chainId
 
