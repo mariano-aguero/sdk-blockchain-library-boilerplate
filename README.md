@@ -1,4 +1,4 @@
-# SDK library boilerplate
+# SDK blockchain library boilerplate
 
 > A typescript boilerplate that can be used to create a library
 
