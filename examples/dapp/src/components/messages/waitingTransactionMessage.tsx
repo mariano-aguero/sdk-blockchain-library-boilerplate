@@ -1,11 +1,17 @@
 import { truncateStringInTheMiddle } from '../../utils/tool'
-import { NETWORK_EXPLORER } from '../../config/constants'
+import { EXPLORERS } from '../../config/constants'
 
-export const WaitingTransactionMessage = ({ hash }: { hash: string }) => {
+export const WaitingTransactionMessage = ({
+  hash,
+  networkId
+}: {
+  hash: string
+  networkId: number
+}) => {
   return (
     <span>
       Waiting Transaction &nbsp;
-      <a href={`${NETWORK_EXPLORER}/tx/${hash}`} target="_blank">
+      <a href={`${EXPLORERS[networkId]}${hash}`} target="_blank">
         {truncateStringInTheMiddle(hash, 6, 4)}
       </a>
     </span>
