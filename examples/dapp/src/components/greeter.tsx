@@ -5,6 +5,7 @@ import { ethers } from 'ethers'
 import { useToasts } from 'react-toast-notifications'
 import { WaitingTransactionMessage } from './messages/waitingTransactionMessage'
 import { SuccessTransactionMessage } from './messages/successTransactionMessage'
+import { DEFAULT_NETWORK_ID } from '../config/constants'
 
 export const Greeter = () => {
   const { provider, status } = useWeb3Context()
@@ -31,43 +32,56 @@ export const Greeter = () => {
     setNewGreeter(event.target.value)
   }, [])
 
-  const handleSubmit = React.useCallback(async (event: React.FormEvent<EventTarget>) => {
-    event.preventDefault()
+  const handleSubmit = React.useCallback(
+    async (event: React.FormEvent<EventTarget>) => {
+      event.preventDefault()
 
-    if (!provider || !newGreeter) {
-      return
-    }
+      if (!provider || !newGreeter) {
+        return
+      }
 
-    setIsExecuted(true)
-    const signer =
-      provider instanceof ethers.providers.Web3Provider ? await provider.getSigner() : undefined
-    const sdk = await SDK.create(provider, signer)
-    try {
-      const { getReceipt, hash } = await sdk.instance.modules.greeter.setGreeting(newGreeter)
+      setIsExecuted(true)
 
-      addToast(<WaitingTransactionMessage hash={hash} />, {
-        appearance: 'info',
-        id: hash,
-        autoDismiss: false
-      })
+      try {
+        const signer =
+          provider instanceof ethers.providers.Web3Provider ? await provider.getSigner() : undefined
+        if (!signer) {
+          throw new Error('You need to be connected to your wallet')
+        }
 
-      await getReceipt()
+        const networkId =
+          provider instanceof ethers.providers.Web3Provider
+            ? (await provider.getNetwork()).chainId
+            : DEFAULT_NETWORK_ID
 
-      updateToast(hash, {
-        content: <SuccessTransactionMessage hash={hash} />,
-        appearance: 'success',
-        autoDismiss: true
-      })
-      setGreeter(newGreeter)
-    } catch (err) {
-      addToast(err.message, {
-        appearance: 'error',
-        autoDismiss: false
-      })
-    }
+        const sdk = await SDK.create(provider, signer)
+        const { getReceipt, hash } = await sdk.instance.modules.greeter.setGreeting(newGreeter)
 
-    setIsExecuted(false)
-  }, [])
+        addToast(<WaitingTransactionMessage hash={hash} networkId={networkId} />, {
+          appearance: 'info',
+          id: hash,
+          autoDismiss: false
+        })
+
+        await getReceipt()
+
+        updateToast(hash, {
+          content: <SuccessTransactionMessage hash={hash} networkId={networkId} />,
+          appearance: 'success',
+          autoDismiss: true
+        })
+        setGreeter(newGreeter)
+      } catch (err) {
+        addToast(err.message, {
+          appearance: 'error',
+          autoDismiss: false
+        })
+      }
+
+      setIsExecuted(false)
+    },
+    [provider, newGreeter]
+  )
 
   return (
     <section id="greeter">
